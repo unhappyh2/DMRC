@@ -1,0 +1,605 @@
+==========[2025-05-14 14:42:28]==========
+=====[DiffRec ] || [music]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0011
+    precision@20: 0.0002
+    ndcg@20: 0.0005
+
+ Epoch 50:
+    recall@20: 0.0017
+    precision@20: 0.0005
+    ndcg@20: 0.0009
+
+ Epoch 100:
+    recall@20: 0.1005
+    precision@20: 0.0241
+    ndcg@20: 0.0784
+
+ Epoch 150:
+    recall@20: 0.1070
+    precision@20: 0.0259
+    ndcg@20: 0.0818
+
+ Epoch 200:
+    recall@20: 0.1110
+    precision@20: 0.0270
+    ndcg@20: 0.0831
+
+ Epoch 250:
+    recall@20: 0.1113
+    precision@20: 0.0269
+    ndcg@20: 0.0836
+
+==========[2025-05-14 15:15:37]==========
+=====[DiffRec ] || [music]==[k = 0.5]====
+==========[2025-05-14 15:16:09]==========
+=====[DiffRec ] || [music]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0010
+    precision@20: 0.0002
+    ndcg@20: 0.0004
+
+==========[2025-05-14 15:20:02]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+==========[2025-05-14 15:22:26]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+==========[2025-05-14 16:06:36]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+==========[2025-05-14 16:07:11]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+==========[2025-05-14 16:08:11]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+==========[2025-05-14 16:11:18]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0015
+    precision@20: 0.0005
+    ndcg@20: 0.0008
+
+ Epoch 100:
+    recall@20: 0.0766
+    precision@20: 0.0229
+    ndcg@20: 0.0399
+
+ Epoch 150:
+    recall@20: 0.0907
+    precision@20: 0.0290
+    ndcg@20: 0.0457
+
+ Epoch 200:
+    recall@20: 0.0921
+    precision@20: 0.0307
+    ndcg@20: 0.0471
+
+==========[2025-05-14 16:16:22]==========
+=====[DiffRec ] || [music]==[k = 0.5]====
+==========[2025-05-14 16:19:24]==========
+=====[DiffRec ] || [music]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0010
+    precision@20: 0.0002
+    ndcg@20: 0.0004
+
+ Epoch 100:
+    recall@20: 0.1013
+    precision@20: 0.0246
+    ndcg@20: 0.0725
+
+ Epoch 150:
+    recall@20: 0.1086
+    precision@20: 0.0262
+    ndcg@20: 0.0822
+
+ Epoch 350:
+    recall@20: 0.1101
+    precision@20: 0.0267
+    ndcg@20: 0.0812
+
+ Epoch 400:
+    recall@20: 0.1115
+    precision@20: 0.0270
+    ndcg@20: 0.0839
+
+==========[2025-05-14 16:28:00]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+==========[2025-05-14 16:28:49]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0015
+    precision@20: 0.0005
+    ndcg@20: 0.0008
+
+ Epoch 100:
+    recall@20: 0.0954
+    precision@20: 0.0256
+    ndcg@20: 0.0473
+
+ Epoch 150:
+    recall@20: 0.1071
+    precision@20: 0.0315
+    ndcg@20: 0.0554
+
+ Epoch 200:
+    recall@20: 0.1159
+    precision@20: 0.0336
+    ndcg@20: 0.0559
+
+==========[2025-05-14 16:33:49]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0004
+    precision@20: 0.0004
+    ndcg@20: 0.0005
+
+ Epoch 50:
+    recall@20: 0.0007
+    precision@20: 0.0005
+    ndcg@20: 0.0005
+
+ Epoch 100:
+    recall@20: 0.0133
+    precision@20: 0.0042
+    ndcg@20: 0.0071
+
+ Epoch 150:
+    recall@20: 0.1139
+    precision@20: 0.0326
+    ndcg@20: 0.0827
+
+ Epoch 200:
+    recall@20: 0.1447
+    precision@20: 0.0429
+    ndcg@20: 0.1038
+
+ Epoch 300:
+    recall@20: 0.1489
+    precision@20: 0.0448
+    ndcg@20: 0.1052
+
+==========[2025-05-14 16:40:34]==========
+=====[DiffRec ] || [movie]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0004
+    precision@20: 0.0004
+    ndcg@20: 0.0005
+
+ Epoch 50:
+    recall@20: 0.0007
+    precision@20: 0.0005
+    ndcg@20: 0.0005
+
+ Epoch 100:
+    recall@20: 0.0133
+    precision@20: 0.0042
+    ndcg@20: 0.0071
+
+ Epoch 150:
+    recall@20: 0.1139
+    precision@20: 0.0326
+    ndcg@20: 0.0827
+
+ Epoch 200:
+    recall@20: 0.1447
+    precision@20: 0.0429
+    ndcg@20: 0.1038
+
+ Epoch 300:
+    recall@20: 0.1489
+    precision@20: 0.0448
+    ndcg@20: 0.1052
+
+ Epoch 500:
+    recall@20: 0.1500
+    precision@20: 0.0456
+    ndcg@20: 0.1068
+
+ Epoch 600:
+    recall@20: 0.1501
+    precision@20: 0.0458
+    ndcg@20: 0.1067
+
+ Epoch 650:
+    recall@20: 0.1548
+    precision@20: 0.0469
+    ndcg@20: 0.1084
+
+==========[2025-05-14 17:00:29]==========
+=====[LightGCN] || [movie]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0004
+    precision@20: 0.0005
+    ndcg@20: 0.0005
+
+ Epoch 50:
+    recall@20: 0.0815
+    precision@20: 0.0193
+    ndcg@20: 0.0657
+
+ Epoch 100:
+    recall@20: 0.1402
+    precision@20: 0.0388
+    ndcg@20: 0.1040
+
+ Epoch 200:
+    recall@20: 0.1434
+    precision@20: 0.0438
+    ndcg@20: 0.1038
+
+ Epoch 250:
+    recall@20: 0.1490
+    precision@20: 0.0440
+    ndcg@20: 0.1064
+
+ Epoch 450:
+    recall@20: 0.1506
+    precision@20: 0.0456
+    ndcg@20: 0.1063
+
+ Epoch 550:
+    recall@20: 0.1510
+    precision@20: 0.0459
+    ndcg@20: 0.1059
+
+ Epoch 650:
+    recall@20: 0.1525
+    precision@20: 0.0462
+    ndcg@20: 0.1059
+
+ Epoch 700:
+    recall@20: 0.1548
+    precision@20: 0.0465
+    ndcg@20: 0.1065
+
+==========[2025-05-14 17:01:32]==========
+=====[LightGCN] || [movie]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0004
+    precision@20: 0.0005
+    ndcg@20: 0.0005
+
+ Epoch 50:
+    recall@20: 0.0815
+    precision@20: 0.0193
+    ndcg@20: 0.0657
+
+ Epoch 100:
+    recall@20: 0.1402
+    precision@20: 0.0388
+    ndcg@20: 0.1040
+
+ Epoch 200:
+    recall@20: 0.1434
+    precision@20: 0.0438
+    ndcg@20: 0.1038
+
+ Epoch 250:
+    recall@20: 0.1490
+    precision@20: 0.0440
+    ndcg@20: 0.1064
+
+ Epoch 450:
+    recall@20: 0.1506
+    precision@20: 0.0456
+    ndcg@20: 0.1063
+
+ Epoch 550:
+    recall@20: 0.1510
+    precision@20: 0.0459
+    ndcg@20: 0.1059
+
+ Epoch 650:
+    recall@20: 0.1525
+    precision@20: 0.0462
+    ndcg@20: 0.1059
+
+ Epoch 700:
+    recall@20: 0.1548
+    precision@20: 0.0465
+    ndcg@20: 0.1065
+
+==========[2025-05-14 17:55:36]==========
+=====[DiffRec ] || [movie2]==[k = 0.5]====
+ Epoch 0:
+    recall@20: 0.0037
+    precision@20: 0.0037
+    ndcg@20: 0.0041
+
+ Epoch 50:
+    recall@20: 0.0152
+    precision@20: 0.0221
+    ndcg@20: 0.0239
+
+ Epoch 100:
+    recall@20: 0.0897
+    precision@20: 0.0703
+    ndcg@20: 0.0953
+
+ Epoch 150:
+    recall@20: 0.1076
+    precision@20: 0.0756
+    ndcg@20: 0.1050
+
+ Epoch 200:
+    recall@20: 0.1099
+    precision@20: 0.0771
+    ndcg@20: 0.1089
+
+ Epoch 250:
+    recall@20: 0.1100
+    precision@20: 0.0772
+    ndcg@20: 0.1084
+
+ Epoch 300:
+    recall@20: 0.1110
+    precision@20: 0.0781
+    ndcg@20: 0.1109
+
+ Epoch 350:
+    recall@20: 0.1129
+    precision@20: 0.0783
+    ndcg@20: 0.1127
+
+ Epoch 400:
+    recall@20: 0.1129
+    precision@20: 0.0783
+    ndcg@20: 0.1114
+
+ Epoch 450:
+    recall@20: 0.1132
+    precision@20: 0.0786
+    ndcg@20: 0.1141
+
+ Epoch 550:
+    recall@20: 0.1135
+    precision@20: 0.0789
+    ndcg@20: 0.1150
+
+ Epoch 600:
+    recall@20: 0.1138
+    precision@20: 0.0791
+    ndcg@20: 0.1161
+
+ Epoch 700:
+    recall@20: 0.1148
+    precision@20: 0.0792
+    ndcg@20: 0.1163
+
+ Epoch 750:
+    recall@20: 0.1152
+    precision@20: 0.0792
+    ndcg@20: 0.1166
+
+==========[2025-05-14 19:10:54]==========
+=====[LightGCN] || [movie2]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0055
+    precision@20: 0.0048
+    ndcg@20: 0.0057
+
+ Epoch 50:
+    recall@20: 0.0859
+    precision@20: 0.0647
+    ndcg@20: 0.0830
+
+ Epoch 100:
+    recall@20: 0.1065
+    precision@20: 0.0745
+    ndcg@20: 0.0993
+
+ Epoch 150:
+    recall@20: 0.1081
+    precision@20: 0.0756
+    ndcg@20: 0.1055
+
+ Epoch 200:
+    recall@20: 0.1099
+    precision@20: 0.0771
+    ndcg@20: 0.1090
+
+ Epoch 250:
+    recall@20: 0.1114
+    precision@20: 0.0776
+    ndcg@20: 0.1125
+
+ Epoch 300:
+    recall@20: 0.1117
+    precision@20: 0.0779
+    ndcg@20: 0.1151
+
+ Epoch 350:
+    recall@20: 0.1133
+    precision@20: 0.0784
+    ndcg@20: 0.1157
+
+ Epoch 400:
+    recall@20: 0.1161
+    precision@20: 0.0787
+    ndcg@20: 0.1163
+
+==========[2025-05-14 19:21:40]==========
+=====[DiffRec ] || [movie2]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0035
+    precision@20: 0.0035
+    ndcg@20: 0.0041
+
+ Epoch 50:
+    recall@20: 0.0330
+    precision@20: 0.0314
+    ndcg@20: 0.0409
+
+ Epoch 100:
+    recall@20: 0.0945
+    precision@20: 0.0719
+    ndcg@20: 0.0980
+
+ Epoch 150:
+    recall@20: 0.1103
+    precision@20: 0.0770
+    ndcg@20: 0.1080
+
+ Epoch 200:
+    recall@20: 0.1110
+    precision@20: 0.0772
+    ndcg@20: 0.1116
+
+ Epoch 250:
+    recall@20: 0.1111
+    precision@20: 0.0772
+    ndcg@20: 0.1090
+
+ Epoch 300:
+    recall@20: 0.1122
+    precision@20: 0.0779
+    ndcg@20: 0.1121
+
+ Epoch 350:
+    recall@20: 0.1132
+    precision@20: 0.0781
+    ndcg@20: 0.1142
+
+ Epoch 400:
+    recall@20: 0.1136
+    precision@20: 0.0783
+    ndcg@20: 0.1132
+
+ Epoch 450:
+    recall@20: 0.1136
+    precision@20: 0.0785
+    ndcg@20: 0.1147
+
+ Epoch 500:
+    recall@20: 0.1138
+    precision@20: 0.0787
+    ndcg@20: 0.1155
+
+ Epoch 600:
+    recall@20: 0.1141
+    precision@20: 0.0790
+    ndcg@20: 0.1160
+
+ Epoch 650:
+    recall@20: 0.1145
+    precision@20: 0.0790
+    ndcg@20: 0.1168
+
+ Epoch 700:
+    recall@20: 0.1148
+    precision@20: 0.0791
+    ndcg@20: 0.1166
+
+ Epoch 750:
+    recall@20: 0.1151
+    precision@20: 0.0791
+    ndcg@20: 0.1167
+
+==========[2025-05-15 09:20:55]==========
+=====[LightGCN] || [movie2]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0055
+    precision@20: 0.0048
+    ndcg@20: 0.0057
+
+ Epoch 50:
+    recall@20: 0.0859
+    precision@20: 0.0647
+    ndcg@20: 0.0830
+
+ Epoch 100:
+    recall@20: 0.1065
+    precision@20: 0.0745
+    ndcg@20: 0.0993
+
+ Epoch 150:
+    recall@20: 0.1081
+    precision@20: 0.0756
+    ndcg@20: 0.1055
+
+ Epoch 200:
+    recall@20: 0.1099
+    precision@20: 0.0771
+    ndcg@20: 0.1090
+
+ Epoch 250:
+    recall@20: 0.1114
+    precision@20: 0.0776
+    ndcg@20: 0.1125
+
+ Epoch 300:
+    recall@20: 0.1117
+    precision@20: 0.0779
+    ndcg@20: 0.1151
+
+ Epoch 350:
+    recall@20: 0.1133
+    precision@20: 0.0784
+    ndcg@20: 0.1157
+
+ Epoch 400:
+    recall@20: 0.1161
+    precision@20: 0.0787
+    ndcg@20: 0.1163
+
+==========[2025-05-15 09:45:03]==========
+=====[DiffRec ] || [movie2]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0031
+    precision@20: 0.0028
+    ndcg@20: 0.0035
+
+ Epoch 50:
+    recall@20: 0.0168
+    precision@20: 0.0150
+    ndcg@20: 0.0187
+
+ Epoch 100:
+    recall@20: 0.0185
+    precision@20: 0.0158
+    ndcg@20: 0.0230
+
+ Epoch 150:
+    recall@20: 0.0225
+    precision@20: 0.0191
+    ndcg@20: 0.0265
+
+ Epoch 200:
+    recall@20: 0.0496
+    precision@20: 0.0411
+    ndcg@20: 0.0550
+
+==========[2025-05-15 10:13:35]==========
+=====[DiffRec ] || [movie2]==[k = 0]====
+==========[2025-05-15 10:13:51]==========
+=====[DiffRec ] || [movie]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0019
+    precision@20: 0.0012
+    ndcg@20: 0.0012
+
+ Epoch 50:
+    recall@20: 0.0113
+    precision@20: 0.0029
+    ndcg@20: 0.0048
+
+ Epoch 250:
+    recall@20: 0.0366
+    precision@20: 0.0140
+    ndcg@20: 0.0265
+
+ Epoch 300:
+    recall@20: 0.1186
+    precision@20: 0.0384
+    ndcg@20: 0.0798
+
+ Epoch 350:
+    recall@20: 0.1308
+    precision@20: 0.0419
+    ndcg@20: 0.0873
+
+==========[2025-05-15 10:40:13]==========
+=====[DiffRec ] || [movie]==[k = 0]====
+ Epoch 0:
+    recall@20: 0.0004
+    precision@20: 0.0004
+    ndcg@20: 0.0005
+
