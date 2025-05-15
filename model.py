@@ -68,8 +68,6 @@ class mainModel(nn.Module):
         ).to(self.device)
 
     def Coach(self, num_epochs, train_edge_index, val_edge_index, genres_edge_index=None):
-        train_sparse_edge_index = SparseTensor(row=train_edge_index[0], col=train_edge_index[1], sparse_sizes=(
-            self.num_users + self.num_items, self.num_users + self.num_items))
         
         # val_sparse_edge_index = SparseTensor(row=val_edge_index[0], col=val_edge_index[1], sparse_sizes=(
         #     self.num_users + self.num_items, self.num_users + self.num_items))
@@ -100,7 +98,7 @@ class mainModel(nn.Module):
 
             # embedding part
             optimizer_embed.zero_grad()
-            users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding( train_sparse_edge_index)
+            users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding( train_edge_index)
                 # mini batching
             user_indices, pos_item_indices, neg_item_indices = self.sample_mini_batch(
                 train_edge_index, self.batch_size, self.num_items)
@@ -137,7 +135,6 @@ class mainModel(nn.Module):
                 loss_Idiff = self.diffusionModel.training_losses( self.Idenoiser, items_emb_final,
                                                                 genres_edge_index, self.genres_emb.weight)
                 loss_Idiff = loss_Idiff.mean()
-
 
             users_emb_denoise = self.diffusionModel.p_sample(
                 self.Udenoiser, users_emb_final, self.timesteps, train_edge_index, items_emb_final)
@@ -176,15 +173,16 @@ class mainModel(nn.Module):
                 metrics['precision@20']=precision
                 metrics['ndcg@20']=ndcg
 
+                print(f"\n[Iteration {epoch}/{num_epochs}] \n k = {self.k}")
+                print(f"diff_loss[(Udiff,diff_bpr) and (Idiff)]: [({loss_Udiff.item()},{diff_bpr_loss}) and ({loss_Idiff.item()})], \nemb_loss: {round(emb_loss.item(), 5)},")
+                print(f"val_recall@{K}: {round(recall, 5)}, val_precision@{K}: {round(precision, 5)}, val_ndcg@{K}: {round(ndcg, 5)}")
+
                 if recall > best_recall:
                     best_recall = recall
                     torch.save(self.state_dict(), f"model_pth/best_model.pth")
-                    print(f"\nbest model saved at epoch {epoch}")
+                    print(f"===[ best model saved at epoch {epoch} !!! ]===")
                     logger(metrics, epoch)
 
-                print(f"\n[Iteration {epoch}/{num_epochs}] k = {self.k}")
-                print(f"diff_loss[Udiff and Idiff]: [{loss_Udiff.item()},{loss_Idiff.item()}], emb_loss: {round(emb_loss.item(), 5)},")
-                print(f"val_recall@{K}: {round(recall, 5)}, val_precision@{K}: {round(precision, 5)}, val_ndcg@{K}: {round(ndcg, 5)}")
                 self.train()
             
             if epoch % ITERS_PER_LR_DECAY == 0 and epoch != 0:
@@ -195,9 +193,7 @@ class mainModel(nn.Module):
     def Eval(self, test_edge_index,train_edge_index):
         print("model Evaluating...")
         self.eval()
-        test_sparse_edge_index = SparseTensor(row=test_edge_index[0], col=test_edge_index[1], sparse_sizes=(
-            self.num_users + self.num_items, self.num_users + self.num_items))
-        
+
         with torch.no_grad():
             recall, precision, ndcg = evaluation(
                     self, test_edge_index, [train_edge_index], 20)
@@ -207,32 +203,32 @@ class mainModel(nn.Module):
     def forward(self, edge_index):
 
         #embedding
-        sparse_edge_index = SparseTensor(row=edge_index[0], col=edge_index[1], sparse_sizes=(
-            self.num_users + self.num_items, self.num_users + self.num_items))
-        users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding(sparse_edge_index)
+        users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding(edge_index)
 
         # diffusion
         users_emb_denoise = self.diffusionModel.p_sample(
             self.Udenoiser, users_emb_final, self.timesteps, edge_index, items_emb_final)
         
         items_emb_denoise = items_emb_final
-        # compute final embedding
-        users_emb_final = self.k * users_emb_final + (1 - self.k) * users_emb_denoise
-        items_emb_final = self.k * items_emb_final + (1 - self.k) * items_emb_denoise
 
-        # users_emb_final = torch.cat([users_emb_final, users_emb_denoise], dim=1)
-        # items_emb_final = torch.cat([items_emb_final, items_emb_denoise], dim=1)
+        # compute final embedding
+        # users_emb_final = self.k * users_emb_final + (1 - self.k) * users_emb_denoise
+        # items_emb_final = self.k * items_emb_final + (1 - self.k) * items_emb_denoise
+
+        users_emb_final = torch.cat([users_emb_final, users_emb_denoise], dim=1)
+        items_emb_final = torch.cat([items_emb_final, items_emb_denoise], dim=1)
 
         return users_emb_final, items_emb_final
 
 
 
     def embedding(self, edge_index):
-        
+        sparse_edge_index = SparseTensor(row=edge_index[0], col=edge_index[1], sparse_sizes=(
+            self.num_users + self.num_items, self.num_users + self.num_items))
         users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.EmbedLayer(
                                                                 self.users_emb.weight, 
                                                                 self.items_emb.weight, 
-                                                                edge_index)
+                                                                sparse_edge_index)
             
         return users_emb_final, users_emb_0, items_emb_final, items_emb_0
 
