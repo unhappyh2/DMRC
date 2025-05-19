@@ -3,7 +3,7 @@ import torch
 from Data_load import Data_loader
 from sklearn.model_selection import train_test_split
 from utils.parament import hyperparameters_process
-from model2 import mainModel
+from bprmf import MF
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
 device = torch.device("cpu")
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     common_nodes = test_nodes.intersection(train_nodes)
     print(f"测试集中的节点有 {len(common_nodes) / len(test_nodes) * 100:.2f}% 出现在训练集中")
 
-    model = mainModel(device, database,timesteps, batch_size, embedding_dim, num_users, num_items).to(device)
+    model = MF(device,batch_size, embedding_dim, num_users, num_items).to(device)
     train_edges = train_edges.to(device)
     # val_edges = val_edges.to(device)
     test_edges = test_edges.to(device)
