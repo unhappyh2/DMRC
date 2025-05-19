@@ -22,6 +22,6 @@ def bpr_loss(users_emb_final, users_emb_0, pos_items_emb_final, pos_items_emb_0,
     neg_scores = torch.mul(users_emb_final, neg_items_emb_final)
     neg_scores = torch.sum(neg_scores, dim=-1) # 负采样预测分数
  
-    loss = -torch.mean(torch.nn.functional.softplus( pos_scores - neg_scores)) + reg_loss
+    loss = -torch.mean(torch.nn.functional.softplus(  pos_scores - neg_scores)) + reg_loss
  
     return loss

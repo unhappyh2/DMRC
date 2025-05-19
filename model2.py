@@ -41,9 +41,9 @@ class mainModel(nn.Module):
             self.num_users + self.num_items, self.num_users + self.num_items))
 
         LAMBDA = 1e-6
-        LR = 1e-3
+        LR = 2e-3
         K = 20
-        ITERS_PER_EVAL = 50
+        ITERS_PER_EVAL = 200
         ITERS_PER_LR_DECAY = 200
         metrics = {}
         best_recall = 0
@@ -58,8 +58,8 @@ class mainModel(nn.Module):
 
             # embedding part
             optimizer_embed.zero_grad()
-            users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding(train_sparse_edge_index)
-
+            #users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding(train_sparse_edge_index)
+            users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.users_emb.weight,self.users_emb.weight, self.items_emb.weight,self.items_emb.weight
             # mini batching
             user_indices, pos_item_indices, neg_item_indices = self.sample_mini_batch(
                 train_edge_index, self.batch_size, self.num_items)
@@ -122,10 +122,10 @@ class mainModel(nn.Module):
     def forward(self, edge_index):
 
         # embedding
-        sparse_edge_index = SparseTensor(row=edge_index[0], col=edge_index[1], sparse_sizes=(
-            self.num_users + self.num_items, self.num_users + self.num_items))
-        users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding(sparse_edge_index)
-
+        #sparse_edge_index = SparseTensor(row=edge_index[0], col=edge_index[1], sparse_sizes=(
+        #    self.num_users + self.num_items, self.num_users + self.num_items))
+        #users_emb_final, users_emb_0, items_emb_final, items_emb_0 = self.embedding(sparse_edge_index)
+        users_emb_final, items_emb_final = self.users_emb.weight,self.items_emb.weight
         return users_emb_final, items_emb_final
 
     def embedding(self, edge_index):

@@ -15,7 +15,7 @@ class mainModel(nn.Module):
         super(mainModel,self).__init__()
         self.model = "DiffRec "
         self.database = database
-        self.k = 0
+        self.k = 0.5
         self.timesteps = timesteps
         self.device = device
         self.batch_size = batch_size
@@ -86,10 +86,12 @@ class mainModel(nn.Module):
         
         optimizer_Udiff = torch.optim.Adam(self.Udenoiser.parameters(), lr=LR)
 
-        loss_Idiff = None
+        loss_Idiff = torch.tensor(0.0).to(self.device)
+
         if self.num_genres != 0:
             optimizer_Idiff = torch.optim.Adam(self.Idenoiser.parameters(), lr=LR)
             self.genres_edge_index = genres_edge_index
+            self.num_genres = 0
             
 
         self.train()
@@ -131,7 +133,7 @@ class mainModel(nn.Module):
                                                               train_edge_index, items_emb_final)
             loss_Udiff = loss_Udiff.mean()
 
-            if genres_edge_index is not None:
+            if self.num_genres != 0:
                 loss_Idiff = self.diffusionModel.training_losses( self.Idenoiser, items_emb_final,
                                                                 genres_edge_index, self.genres_emb.weight)
                 loss_Idiff = loss_Idiff.mean()
@@ -139,7 +141,7 @@ class mainModel(nn.Module):
             users_emb_denoise = self.diffusionModel.p_sample(
                 self.Udenoiser, users_emb_final, self.timesteps, train_edge_index, items_emb_final)
             
-            if genres_edge_index is not None:
+            if self.num_genres != 0:
                 items_emb_denoise = self.diffusionModel.p_sample(
                     self.Idenoiser, items_emb_final, self.timesteps, genres_edge_index, self.genres_emb.weight)
             else:
@@ -154,12 +156,12 @@ class mainModel(nn.Module):
             # 计算BPR损失
             diff_bpr_loss = bpr_loss(users_emb_final_batch, users_emb_0_batch, pos_items_emb_final,
                                 pos_items_emb_0, neg_items_emb_final, neg_items_emb_0, LAMBDA)
-            loss_Udiff = loss_Udiff + diff_bpr_loss
+            loss_Udiff =  loss_Udiff + diff_bpr_loss
 
             loss_Udiff.backward()
             optimizer_Udiff.step()
 
-            if genres_edge_index is not None:
+            if self.num_genres != 0:
                 loss_Idiff.backward()
                 optimizer_Idiff.step()
 
@@ -212,11 +214,11 @@ class mainModel(nn.Module):
         items_emb_denoise = items_emb_final
 
         # compute final embedding
-        # users_emb_final = self.k * users_emb_final + (1 - self.k) * users_emb_denoise
-        # items_emb_final = self.k * items_emb_final + (1 - self.k) * items_emb_denoise
+        users_emb_final = self.k * users_emb_final + (1 - self.k) * users_emb_denoise
+        items_emb_final = self.k * items_emb_final + (1 - self.k) * items_emb_denoise
 
-        users_emb_final = torch.cat([users_emb_final, users_emb_denoise], dim=1)
-        items_emb_final = torch.cat([items_emb_final, items_emb_denoise], dim=1)
+        # users_emb_final = torch.cat([users_emb_final, users_emb_denoise], dim=1)
+        # items_emb_final = torch.cat([items_emb_final, items_emb_denoise], dim=1)
 
         return users_emb_final, items_emb_final
 
@@ -235,8 +237,6 @@ class mainModel(nn.Module):
     def genre_embedding(self, edge_index):
         items_emb_final, items_emb_0, genres_emb_final, genres_emb_0 = self.EmbedLayer(self.items_emb.weight, self.genres_emb.weight, edge_index)
         return items_emb_final, items_emb_0
-
-
 
     def sample_mini_batch(self, edge_index, batch_size, num_items):
         """
