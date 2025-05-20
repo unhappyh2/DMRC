@@ -1,10 +1,12 @@
 import torch.nn as nn
 import torch
 import random
+import time
 from tqdm import trange
 from collections import defaultdict
 from function.loss_func import bpr_loss
 from function.evaluate import evaluation
+from module.lightGCNlay import lightGCN
 
 class MF(nn.Module):
     def __init__(self, device,batch_size, embedding_dim, num_users, num_items):
@@ -26,6 +28,9 @@ class MF(nn.Module):
         nn.init.xavier_normal_(self.users_emb.weight)
         nn.init.xavier_normal_(self.items_emb.weight)
 
+        self.emb_lays = nn.ModuleList()
+        self.emb_lays.append(lightGCN(self.embedding_dim))
+
     def forward(self,batch_users,batch_pos_items,batch_neg_items):
         users_emb_final_batch = self.get_users_emb(batch_users)
         pos_items_emb_final_batch = self.get_items_emb(batch_pos_items)
@@ -44,28 +49,41 @@ class MF(nn.Module):
         LAMBDA = 1e-6
         LR = 1e-3
         K = 20
-        ITERS_PER_EVAL = 10
+        ITERS_PER_EVAL = 20
         ITERS_PER_LR_DECAY = 200
         metrics = {}
         best_recall = 0
         optimizer = torch.optim.Adam(self.parameters(), lr=LR)
 
         for epoch in trange(epochs):
+            self.train()
+            user_emb_0, item_emb_0 = self.users_emb.weight, self.items_emb.weight
+            emb_edge = torch.cat([train_edge[0], train_edge[1] + self.num_users])
+
+            for emb_layer in self.emb_lays:
+                user_emb_final, item_emb_final = emb_layer(user_emb_0, item_emb_0, emb_edge, self.num_users, self.num_items)
 
             for batch_i, num_batch, batch_users, batch_pos_items, batch_neg_items in self.batch_sample(train_edge):
                 optimizer.zero_grad()
-                users_emb_final_batch, pos_items_emb_final_batch, neg_items_emb_final_batch = self.forward(batch_users, batch_pos_items, batch_neg_items)
+                time_start = time.time()
+                users_emb_final_batch, pos_items_emb_final_batch, neg_items_emb_final_batch = user_emb_final[batch_users], item_emb_final[batch_pos_items], item_emb_final[batch_neg_items]
+
                 users_emb_0_batch = self.users_emb.weight[batch_users]
                 pos_items_emb_0_batch = self.items_emb.weight[batch_pos_items]
                 neg_items_emb_0_batch = self.items_emb.weight[batch_neg_items]
+
                 loss = bpr_loss(users_emb_final_batch, users_emb_0_batch, pos_items_emb_final_batch,
                               pos_items_emb_0_batch, neg_items_emb_final_batch, neg_items_emb_0_batch, LAMBDA)
+                
                 loss.backward()
                 optimizer.step()
-                print(f"\r[Iteration {epoch}/{epochs}] batch[{num_batch}\{batch_i}] loss: {loss.item()}", end=' ', flush=True)
+                time_end = time.time()
 
+                print(f"\r[Iteration {epoch}/{epochs}] batch[{batch_i}\{num_batch}] time_use : {time_end - time_start} loss: {loss.item()}", end=' ', flush=True)
+            print("end of epoch batch")
             if epoch % ITERS_PER_EVAL == 0:
                 self.eval()
+                print("start evaluation")
                 recall, precision, ndcg = evaluation(
                     self, val_edge, [train_edge], K)
                 metrics['recall@20'] = recall
