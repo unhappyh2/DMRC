@@ -6,7 +6,7 @@ from utils.parament import hyperparameters_process
 from bprmf import MF
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu")
-device = torch.device("cpu")
+#device = torch.device("cpu")
 
 if __name__ == '__main__':
     args = hyperparameters_process()
@@ -39,7 +39,7 @@ if __name__ == '__main__':
     all_indices = [i for i in range(num_edges)]  # 所有索引
     
     train_indices, test_indices = train_test_split(
-            all_indices, test_size=0.2, random_state=1)  # 将数据集划分成80:10的训练集:测试集
+            all_indices, test_size=0.1, random_state=1)  # 将数据集划分成80:10的训练集:测试集
     # val_indices, test_indices = train_test_split(
     #         test_indices, test_size=0.5, random_state=1)  # 将测试集划分成10:10的验证集:测试集,最后的比例就是80:10:10
     
